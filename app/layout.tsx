@@ -4,6 +4,7 @@ import './globals.css';
 import ChartInit from '@/utils/ChartInit';
 import Footer from '@/components/Footer';
 import SearchBar from '@/components/SearchBar';
+import { ThemeProvider } from 'next-themes';
 
 const poppins = Poppins({
     subsets: ['latin'],
@@ -30,13 +31,15 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={poppins.className}>
-                <ChartInit />
-                <div className="mx-auto min-h-screen max-w-[86rem] p-4">
-                    <SearchBar />
-                    <div>{children}</div>
-                </div>
-                <Footer />
+            <body>
+                <ThemeProvider attribute="class">
+                    <ChartInit />
+                    <div className="mx-auto min-h-screen max-w-[86rem] p-4">
+                        <SearchBar />
+                        <div>{children}</div>
+                    </div>
+                    <Footer />
+                </ThemeProvider>
             </body>
         </html>
     );
